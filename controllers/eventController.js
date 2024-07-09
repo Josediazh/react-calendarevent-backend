@@ -15,7 +15,6 @@ const newEvent = async(req,resp = response) =>{
         resp.status(201).json({
             ok: true,
             evento: newEvento
-            
         });
 
     }catch(error){
@@ -118,7 +117,9 @@ const deleteEvent = async(req,resp = response) =>{
 const getEvents = async(req,resp = response) =>{
     try{
 
-        const eventos = await Evento.find()
+        const iduser = req.uid;
+
+        const eventos = await Evento.find({usr: iduser})
                                     .populate('usr','name')
 
         resp.status(201).json({

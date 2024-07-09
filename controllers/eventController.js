@@ -1,4 +1,5 @@
 const {response} = require('express');
+const ObjectId = require('mongoose').Types.ObjectId;
 const Evento = require('../models/eventModel');
 
 const newEvent = async(req,resp = response) =>{
@@ -118,8 +119,8 @@ const getEvents = async(req,resp = response) =>{
     try{
 
         const iduser = req.uid;
-
-        const eventos = await Evento.find({usr: iduser})
+        const objectId = new ObjectId(iduser);
+        const eventos = await Evento.find({usr: objectId})
                                     .populate('usr','name')
 
         resp.status(201).json({

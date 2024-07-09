@@ -34,6 +34,8 @@ router.delete('/deleteevent/:_id',
 ,deleteEvent)
 
 
-router.get('/',getEvents)
+router.get('/',[
+    validJWT,
+],getEvents)
 
 module.exports = router;
